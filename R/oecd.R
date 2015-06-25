@@ -20,7 +20,7 @@
 #' }
 #'
 #' @importFrom rsdmx readSDMX
-#' @importFrom dplyr %>% rename
+#' @importFrom dplyr %>% rename rename_
 #' @importFrom curl curl_fetch_memory
 #'
 #' @export
@@ -51,9 +51,10 @@ oecd <- function(country = 'all', indicator = 'QASA_TABLE7PSD',
 
         temp <- temp %>%
                     dplyr::rename(iso3c = LOCATION) %>%
-                    dplyr::rename(time = obsTime) %>%
-                    dplyr::rename(i = obsValue)
-        if (!isTRUE(extra)) temp <- temp %>% dplyr::select(iso3c, time, i)
+                    dplyr::rename(time = obsTime)
+        names(temp)[names(temp) == "obsValue"] <- i
+
+        if (!isTRUE(extra)) temp <- temp[, c('iso3c', 'time', i)]
     }
     return(temp)
 }
