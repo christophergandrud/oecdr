@@ -1,0 +1,17 @@
+Package: oecdr
+Type: Package
+Title: Download and Format OECD Data
+Description: Download and format data from the OECD (https://stats.oecd.org).
+Version: 0.1.0
+Date: 2015-06-25
+Author: Christopher Gandrud
+Maintainer: Christopher Gandrud <christopher.gandrud@gmail.com>
+BugReports: https://github.com/christophergandrud/oecdr/issues
+License: GPL (>= 3)
+Depends:
+    R (>= 3.0.0)
+LazyData: TRUE
+Imports:
+    curl,
+    dplyr,
+    rsdmx
