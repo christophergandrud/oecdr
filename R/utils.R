@@ -3,7 +3,7 @@
 #' @keywords internal
 #' @noRd
 
-oecd_url <- function(country, indicator, start, end) {
+oecd_url <- function(country, table, indicator, start, end) {
     if ('all' %in% country) {
         country_list <- paste0('AUS+AUT+BEL+CAN+CHL+CZE+DNK+EST+FIN+FRA+DEU+GRC',
                             '+HUN+ISL+IRL+ISR+ITA+JPN+KOR+LUX+MEX+NLD+NZL+NOR+',
@@ -11,8 +11,9 @@ oecd_url <- function(country, indicator, start, end) {
                             'LVA+RUS')
     } else country_list <- addp(country)
 
-    url_out <- sprintf('http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/%s/%s.SAFGD.S1311C.PCTGDPA.NSA/all?startTime=%s&endTime=%s',
-            indicator, country_list, as.character(start), as.character(end))
+    url_out <- sprintf('http://stats.oecd.org/restsdmx/sdmx.ashx/GetData/%s/%s.%s/all?startTime=%s&endTime=%s',
+            table, country_list, indicator, as.character(start),
+            as.character(end))
     return(url_out)
 }
 

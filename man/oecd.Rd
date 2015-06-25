@@ -4,15 +4,20 @@
 \alias{oecd}
 \title{Download OECD data}
 \usage{
-oecd(country = "all", indicator = "QASA_TABLE7PSD", start = "2000-Q1",
-  end = "2011-Q4", extra = FALSE)
+oecd(country = "all", table = "QASA_TABLE7PSD",
+  indicator = "SAFGD.S1311C.CAR.NSA", start = "2000-Q1", end = "2011-Q4",
+  extra = FALSE)
 }
 \arguments{
 \item{country}{character vector of country names in ISO 3 country code
 format. The default (\code{'all'}) downloads data for all available
 countries.}
 
-\item{indicator}{character vector of indicator codes.}
+\item{table}{character string identifying the table. Note only one table
+can be queried at a time.}
+
+\item{indicator}{character vector of indicator codes for variables in
+\code{table}.}
 
 \item{start}{first year or quarter to download data for.}
 
@@ -30,7 +35,10 @@ returns the data in country-time format
 }
 \examples{
 \dontrun{
-qrt_public_debt <- oecd()
+# Download: Central Governement Currency and Deposits (\% GDP) and
+#           Total Gross Central Government Debt in current prices
+qrt_public_debt <- oecd(indicator = c('SAF2LXT.S1311C.PCTGDPA.NSA',
+                     'SAFGD.S1311C.CAR.NSA'))
 }
 }
 
