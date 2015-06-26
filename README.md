@@ -1,8 +1,8 @@
-# oecdr
+# oecdr: Download and extract data from the [OECD](https://stats.oecd.org) into R.
 
 Version: 0.1.0
 
-Download and extract data from the [OECD](https://stats.oecd.org) into R.
+
 
 ## Install
 
@@ -12,8 +12,29 @@ devtools::install_github('christophergandrud/oecdr')
 
 ## Use
 
+OECD Statistics are arrange as **indicators** in **tables**. For example,
+the *Total gross debt* indicator is in the *Public Sector Debt, consolidated,
+nominal value* table:
+
+![table-img](img/oecd_debt_table.png)
+
+To download this data into R we need both the **indicator** and **table**
+identifier. To find this click on `Export` then `SDMX (XML)`. A window
+like this should pop up:
+
+![sdmx-export-window](img/export_sdmx.png)
+
+The information we need is in the "SDMX DATA URL" field. The table ID
+is highlighted by the red box (`QASA_TABLE7PSD`) and the indicator ID is
+highlighted in the blue box (`SAFGD.S1311C.CAR.NSA`).
+
+We can enter this information into `oecd` and download the data into R. You
+can download multiple indicators from the same table with the same `oecd`
+call. For example:
+
 ```{S}
-qrt_public_debt <- oecdr::oecd(indicator = c('SAF2LXT.S1311C.PCTGDPA.NSA',
+qrt_public_debt <- oecdr::oecd(table = 'QASA_TABLE7PSD',
+                        indicator = c('SAF2LXT.S1311C.PCTGDPA.NSA',
                         'SAFGD.S1311C.CAR.NSA'))
 
 head(qrt_public_debt)
