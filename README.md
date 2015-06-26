@@ -12,21 +12,21 @@ devtools::install_github('christophergandrud/oecdr')
 
 ## Use
 
-OECD Statistics are arrange as **indicators** in **tables**. For example,
+OECD Statistics are arranged as **indicators** in **tables**. For example,
 the *Total gross debt* indicator is in the *Public Sector Debt, consolidated,
 nominal value* table:
 
 ![table-img](img/oecd_debt_table.png)
 
 To download this data into R we need both the **indicator** and **table**
-identifier. To find this click on `Export` then `SDMX (XML)`. A window
+identifiers. To find these click on `Export` then `SDMX (XML)`. A window
 like this should pop up:
 
 ![sdmx-export-window](img/export_sdmx.png)
 
-The information we need is in the "SDMX DATA URL" field. The table ID
-is highlighted by the red box (`QASA_TABLE7PSD`) and the indicator ID is
-highlighted in the blue box (`SAFGD.S1311C.CAR.NSA`).
+The information we need is in the "SDMX DATA URL" field. I've highlighted the
+table ID with the red box (`QASA_TABLE7PSD`) and the indicator ID with the blue
+box (`SAFGD.S1311C.CAR.NSA`).
 
 We can enter this information into `oecd` and download the data into R. You
 can download multiple indicators from the same table with the same `oecd`
