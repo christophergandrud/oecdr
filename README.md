@@ -28,6 +28,9 @@ The information we need is in the "SDMX DATA URL" field. I've highlighted the
 table ID with the red box (`QASA_TABLE7PSD`) and the indicator ID with the blue
 box (`SAFGD.S1311C.CAR.NSA`).
 
+> Hint: The table ID will be surrounded by forward slashes (`/`). The indicator
+ID will be proceeded by a `.` and followed by a `/`. 
+
 We can enter this information into `oecd` and download the data into R. You
 can download multiple indicators from the same table with the same `oecd`
 call. For example:
