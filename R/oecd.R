@@ -15,7 +15,8 @@
 #' @param extra logical. If \code{TRUE} then all information from the download
 #' is returned.
 #'
-#' @return a data frame
+#' @return a data frame with (if \code{extra = TRUE}) country ISO 3 Letter
+#' codes, the time variable and the requested indicators.
 #'
 #' @examples
 #' \dontrun{

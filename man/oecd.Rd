@@ -27,7 +27,8 @@ can be queried at a time.}
 is returned.}
 }
 \value{
-a data frame
+a data frame with (if \code{extra = TRUE}) country ISO 3 Letter
+codes, the time variable and the requested indicators.
 }
 \description{
 Downloads requested data from the OECD's API, parses the download, and
