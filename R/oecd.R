@@ -14,6 +14,8 @@
 #' @param end final year or quarter to download data for.
 #' @param extra logical. If \code{TRUE} then all information from the download
 #' is returned.
+#' @param return_url logical. Whether or not to return the URL constructed
+#' for the query. Can be useful for debugging your query.
 #'
 #' @return a data frame with (if \code{extra = TRUE}) country ISO 3 Letter
 #' codes, the time variable and the requested indicators.
@@ -24,6 +26,10 @@
 #' #           Total Gross Central Government Debt in current prices
 #' qrt_public_debt <- oecd(indicator = c('SAF2LXT.S1311C.PCTGDPA.NSA',
 #'                      'SAFGD.S1311C.CAR.NSA'))
+#'
+#' # Gross domestic product (expenditure approach current prices, millions)
+#' gdp <- oecd(table = 'SNA_TABLE1', indicator = 'B1_GE.CPC',
+#'             start = 2000, end = 2012)
 #' }
 #'
 #' @importFrom rsdmx readSDMX
@@ -35,7 +41,7 @@
 oecd <- function(country = 'all', table = 'QASA_TABLE7PSD',
                  indicator = 'SAFGD.S1311C.CAR.NSA',
                  start = '2000-Q1', end = '2011-Q4',
-                 extra = FALSE) {
+                 extra = FALSE, return_url = FALSE) {
     LOCATION <- obsTime <- obsValue <- iso3c <- NULL
 
     if (length(table) > 1) stop('Can only download data from one table at a time', call. = T)
@@ -47,11 +53,13 @@ oecd <- function(country = 'all', table = 'QASA_TABLE7PSD',
         URL <- oecd_url(country = country, table = table, indicator = i,
                         start = start, end = end)
 
+        if (isTRUE(return_url)) message(sprintf('Using URL: %s', URL))
+
         temp_file <- tempfile()
         on.exit(unlink(temp_file))
         u <- curl_fetch_memory(URL)
 
-        if (u$status_code == 500)
+        if (u$status_code == 500 | u$status_code == 400)
             stop(sprintf('Unable to download requested data for: %s.', i),
                  call. = F)
 

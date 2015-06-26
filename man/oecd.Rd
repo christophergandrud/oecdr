@@ -6,7 +6,7 @@
 \usage{
 oecd(country = "all", table = "QASA_TABLE7PSD",
   indicator = "SAFGD.S1311C.CAR.NSA", start = "2000-Q1", end = "2011-Q4",
-  extra = FALSE)
+  extra = FALSE, return_url = FALSE)
 }
 \arguments{
 \item{country}{character vector of country names in ISO 3 country code
@@ -25,6 +25,9 @@ can be queried at a time.}
 
 \item{extra}{logical. If \code{TRUE} then all information from the download
 is returned.}
+
+\item{return_url}{logical. Whether or not to return the URL constructed
+for the query. Can be useful for debugging your query.}
 }
 \value{
 a data frame with (if \code{extra = TRUE}) country ISO 3 Letter
@@ -40,6 +43,10 @@ returns the data in country-time format
 #           Total Gross Central Government Debt in current prices
 qrt_public_debt <- oecd(indicator = c('SAF2LXT.S1311C.PCTGDPA.NSA',
                      'SAFGD.S1311C.CAR.NSA'))
+
+# Gross domestic product (expenditure approach current prices, millions)
+gdp <- oecd(table = 'SNA_TABLE1', indicator = 'B1_GE.CPC',
+            start = 2000, end = 2012)
 }
 }
 

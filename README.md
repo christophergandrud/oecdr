@@ -29,7 +29,7 @@ table ID with the red box (`QASA_TABLE7PSD`) and the indicator ID with the blue
 box (`SAFGD.S1311C.CAR.NSA`).
 
 > Hint: The table ID will be surrounded by forward slashes (`/`). The indicator
-ID will be proceeded by a `.` and followed by a `/`. 
+ID will be proceeded by a `.` and followed by a `/`.
 
 We can enter this information into `oecd` and download the data into R. You
 can download multiple indicators from the same table with the same `oecd`
@@ -49,4 +49,11 @@ head(qrt_public_debt)
 4   AUS 2000-Q4                          0             205515.9
 5   AUS 2001-Q1                          0             203152.5
 6   AUS 2001-Q2                          0             209870.5
+```
+
+Here is another example that downloads Gross domestic product (expenditure approach current prices, millions):
+
+```{S}
+gdp <- oecd(table = 'SNA_TABLE1', indicator = 'B1_GE.CPC',
+           start = 2000, end = 2012)
 ```
