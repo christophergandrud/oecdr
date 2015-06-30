@@ -1,6 +1,6 @@
 # oecdr: Download and extract data from the [OECD](https://stats.oecd.org) into R.
 
-Version: 0.1.0
+Version: 0.1.0 [![Build Status](https://travis-ci.org/christophergandrud/oecdr.svg?branch=master)](https://travis-ci.org/christophergandrud/oecdr)
 
 
 
